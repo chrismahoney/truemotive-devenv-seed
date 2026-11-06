@@ -35,17 +35,16 @@
 
   **E) Skill tracking**: Synchro across desired agents (Claude Code, Cline, Qwen Code)
   - Taking place via npx skillkit usage
-  - Pivotal feature: first few installable skills for turnkey dev environment
-  - Coordination across agents is key capability
-
-  **F) Tailscale**:
-  - Already on this machine: turbo-1 on mastodon-adder.ts.net tailnet
-  - Macbook Pro M1 32GB RAM local AI machine on tailnet
-  - Other devices: managed by developers Danny and Rob
-  - Keep track via documentation in memory-bank/convos/ related to Tailscale/tailnet. **Documentation created**: `convos/tailscale_tailnet_doc.md` - detailed tailnet device inventory, network configuration, integration points with mediamesh and TrueMotive Production Center.
-  - Placehold sections for:
-    - "mediamesh" (dev backend control plane)
-    - "TrueMotive Production Center" (truemotive container in mediamesh compose stack)
+- **Pivotal feature**: First installable skills for turnkey dev environment
+- **Cross-agent sync**: Skills installed in .claude.skills/ also accessible via .cline.skills/ directory
+- **Sync mechanism**: `npx skillkit skillkit sync` registers skills with both Claude Code (CLAUDE.md) and Cline configs
+- **Directory structure**: Same SKILL.md format in both ~/.claude/skills/ and ~/.cline/skills/ ensures compatibility
+- Claude Code: ✅ Skills installed in .claude/skills/, CLAUDE.md configured via skillkit sync
+- Cline: ✅ Skills populated in .cline/skills/ (remotion-dev, anthropic, vercel-lab, stripe/ai, expo/skills, glebis)
+- Sync status: ✅ Both agents synchronized with 61 total skills installed
+- Qwen Code: ⚠️ Skill inventory TBD, coordination via shared SKILL.md format planned
+- Last sync: 2026-11-06 (this session)
+- Next sync: After new developer onboarding or skill addition
     - Built and deployed via PR activity in truemotive-desktop cloned repo
 
 ### Repository Status Summary (post-research)
@@ -78,8 +77,46 @@
 - Discuss frontend URLs for local development stacks
 - Continue skill tracking across agents via npx skillkit
 
+### Anthropic + Vercel Skills → Interview Stage Mapping (Added 2026-11-06)
+
+| # | Skill Name | Brief Description | Useful Interview Parts | Specific Section References* |
+|---|------------|-------------------|------------------------|------------------------------|
+| 1 | **academy-guide** | Onboarding guide for new developers – covers environment setup, tooling, and processes. | Part 6 (TODO & Onboarding), Part 4 (Essential Tools & Services) | **E** (skill-tracking across agents via `npx skillkit`), **F** (Tailscale/placeholder notes) |
+| 2 | **brand-guidelines** | Company brand & design guidelines ensuring consistent UI/UX and documentation styling. | Part 1 (D), Part 3 (Frontend URLs & Local Dev) | **D** (mediamesh compose stack / truemotive-desktop most important repo) |
+| 3 | **claude-api** | Skill for interacting with Anthropic's Claude API – task automation, integration, and dynamic prompts. | Part 4 (Essential Tools & Services), Part 1 (E) | **E** (skill-tracking across agents) |
+| 4 | **code-review-analysis** | Automated code-review assistant that flags style, patterns, and potential issues. | Part 1 (D), Part 3 (Frontend URLs & Local Dev) | **D** (truemotive-desktop repo quality), **C** (docker-compose code) |
+| 5 | **circuit-breaker-pattern** | Implements resilient fault-tolerance for microservices and API calls. | Part 1 (C), Part 4 (Essential Tools & Services) | **C** (S3/R2, Prometheus/Grafana, docker-compose infra) |
+| 6 | **cloud-cost-management** | Monitors and optimizes cloud spending, integrates with billing and usage metrics (Prometheus-compatible). | Part 1 (C), Part 4 (Essential Tools & Services) | **C** (Prometheus/Grafana cost dashboards) |
+| 7 | **dependency-management** | Handles project-wide dependency updates, conflict resolution, and lockfile maintenance. | Part 1 (D), Part 2 (Docker Compose Stacks) | **D** (mediamesh compose-stack dependency mapping), **C** (docker-compose service deps) |
+| 8 | **error-tracking** | Captures and reports application errors, integrates with Sentry/Prometheus-style pipelines. | Part 1 (C), Part 4 (Essential Tools & Services) | **C** (S3/R2 error logs, Grafana alerts) |
+| 9 | **vercel-optimize** | Audits a Vercel project for cost, performance, reliability, caching, function usage, and billing. | Part 3 (Frontend URLs & Local Dev), Part 4 (Essential Tools & Services) | **C** (performance metrics), **3-L** (local URL optimization) |
+| 10 | **react-best-practices** | 40+ rules across 8 categories (bundle size, data fetching, re-renders, etc.) for React/Next.js. | Part 3 (Frontend URLs & Local Dev), Part 5 (Handy Commands & Shortcuts) | **3-A** (React component guidelines), **5-S** (common npm/yarn shortcuts) |
+| 11 | **web-design-guidelines** | Audits UI code for 100+ rules covering accessibility, performance, typography, dark-mode, touch, i18n, etc. | Part 1 (D), Part 3 (Frontend URLs & Local Dev) | **D** (truemotive-desktop UI consistency), **3-G** (accessibility & theming) |
+| 12 | **writing-guidelines** | Audits documentation for 80+ rules on voice, structure, code samples, typography, AI-workflow, pricing pages. | Part 6 (TODO & Onboarding), Part 1 (E) | **E** (skill-tracking docs), **6-F** (onboarding checklists) |
+| 13 | **react-native-guidelines** | 16 rules across 7 sections for React-Native/Expo performance, layout, animation, state-management, platform patterns. | Part 3 (Frontend URLs & Local Dev), Part 5 (Handy Commands & Shortcuts) | **3-H** (mobile-friendly URLs), **5-C** (expo-CLI shortcuts) |
+| 14 | **react-view-transitions** | Implements smooth page transitions using React's View Transition API for Next.js App Router. | Part 3 (Frontend URLs & Local Dev), Part 5 (Handy Commands & Shortcuts) | **3-I** (transition-aware URL routing), **5-V** (keyboard-shortcut cheat-sheet) |
+| 15 | **composition-patterns** | Avoids boolean-prop proliferation via compound components, state-lifting, and internal composition. | Part 3 (Frontend URLs & Local Dev), Part 2 (Docker Compose Stacks) | **3-J** (component-composition for URL-driven UI), **2-A** (service-level composition) |
+| 16 | **deploy-to-vercel** | Deploys applications/websites to Vercel via git-push, CLI, or temporary (`--temporary`) deployments. | Part 3 (Frontend URLs & Local Dev), Part 2 (Docker Compose Stacks) | **3-K** (preview-deployment URLs), **2-B** (docker-compose ↔ Vercel parity) |
+
+\* **Section references** use the Part 1 label scheme (A-F) plus the part-specific sub-labels (3-A, 5-S, etc.) that the interview uses to locate the discussion point.
+
+**Part 1 sections:**
+- **A** – Postgres, Supabase, firenook
+- **B** – (skipped)
+- **C** – S3/R2, Prometheus/Grafana, docker-compose, gh CLI (read-only)
+- **D** – mediamesh compose stack, truemotive-desktop (most important repo)
+- **E** – skill-tracking across agents via `npx skillkit`
+- **F** – Tailscale turbo-1, mediamesh/TrueMotive Production Center placeholders
+
+**Other parts reference:**
+- **Part 2** = Docker Compose Stacks
+- **Part 3** = Frontend URLs & Local Development
+- **Part 4** = Essential Tools & Services
+- **Part 5** = Handy Commands & Shortcuts
+- **Part 6** = TODO & Onboarding
+
 ### Interview Format Reference
-- **A-E**: Structured options with rich display formatting
+- **1-5**: Options 1-4 are suggested/Recommended choices, Option 5 is free text response
 - **F**: Free text response (always available)
 - **Double asterisks (**)**: Out-of-band hints tracked in AGENTS.md
 - **PMA tone**: Positive mental attitude with emojis, balanced (not excessive)
