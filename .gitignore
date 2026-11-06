@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Environment files
+.local.env
+.env
+
+# Docker
+.dockerinit
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Temp / Logs
+*.log
+npm-debug.log*
+
+# Output / Build
+.dist/
+.out/
+
+# OS
+.DS_Store
+
+# skillkit
+.skillkit/
+
+# Project specific
+.tmp/
+.initial-commit/
