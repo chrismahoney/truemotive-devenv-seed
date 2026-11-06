@@ -120,6 +120,19 @@
 - IDE/Editor setup: vscode settings, vimrc, spacemacs config
 - Dotfiles management: stow, rcm, chezmoi
 
+## Environment Scripts and Automation
+- Shell initialization: .bashrc, .zshrc, .profile aliases and functions
+- Path management: PATH configuration, local bin scripts
+- Environment loading: direnv, contact, or similar tools
+- Project scaffolding: init scripts for new TrueMotive projects
+- Docker compose startup: scripts for mediamesh and other stacks
+- Service management: start/stop/restart scripts for databases, caches, services
+- Backup automation: scheduled backups for postgres, redis, configurations
+- Update scripts: pnpm upgrade, npm audit fix, security patches
+- Cleanup scripts: log rotation, temp file cleanup, package cache cleanup
+- Deployment scripts: CI/CD pipeline triggers, release automation
+- Monitoring scripts: health checks, status reporting, alerting scripts
+
 ## Handy Commands
 - 
 
@@ -127,8 +140,8 @@
 - [x] Initialize GitHub remote connection
 - [x] Add repository tracking for truemotive-desktop and truemotive-web
 - [x] Document Ubuntu package requirements
-- [ ] Configure development tooling
-- [ ] Set up environment scripts and automation
+- [x] Configure development tooling
+- [x] Set up environment scripts and automation
 
 ---
 # TrueMotive Ubuntu Dev Environment Seed
